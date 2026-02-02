@@ -1,6 +1,6 @@
 # 📚 Subject-Specific Doubt Resolution System
 
-A console-based Python application simulating a blended learning platform where students can post subject-specific questions and receive both automatically web-scraped preliminary answers and instructor-verified authoritative responses.
+A console-based Python application simulating a blended learning platform where students can post subject-specific questions and receive intelligent responses powered by **Google Gemini AI**, with fallback to **Wikipedia web scraping** and **instructor verification**.
 
 ---
 
@@ -8,17 +8,40 @@ A console-based Python application simulating a blended learning platform where 
 
 In blended learning environments, students often have subject-related doubts outside classroom hours. This system addresses this need by providing:
 
-1. **Automatic Response**: Simulated web scraping from educational websites for instant preliminary answers
-2. **Instructor Response**: Verified authoritative answers from course instructors
-3. **Organized Database**: Efficient tracking of questions and their verification status
+1. **AI-Powered Responses**: Google Gemini API for intelligent, context-aware answers
+2. **Web Scraping Fallback**: Wikipedia integration when API unavailable
+3. **Instructor Verification**: Course instructors add verified authoritative answers
+4. **Organized Database**: Efficient tracking of questions and their verification status
+
+---
+
+## 🤖 Google Gemini AI Integration (NEW!)
+
+This system now features **Google Gemini AI** for smart answer generation!
+
+### ✨ Answer Generation Priority:
+
+1. **Google Gemini API** (if configured) → AI-powered intelligent answers
+2. **Wikipedia Web Scraping** (fallback) → Real web content
+3. **Cached Content** (fallback) → Educational database
+
+### 🔒 Safety Features:
+
+- API key stored in **environment variable** (never in code)
+- **Optional** - system works without API key
+- **Secure** - uses built-in Python libraries only
+- **Free tier** available for testing
+
+**See [API_SETUP.md](API_SETUP.md) for Gemini configuration guide**
 
 ---
 
 ## � Installation & Setup (For External Users)
 
 ### Prerequisites:
-- **Python 3.7+** installed on your system
+- **Python 3.7+** installed
 - **Git** (optional, for cloning)
+- **Gemini API Key** (optional, for AI features)
 
 ### Step 1: Get the Code
 
@@ -34,42 +57,72 @@ cd -Subject-Specific-Doubt-Resolution-System
 3. Extract the ZIP file
 4. Open terminal in the extracted folder
 
-### Step 2: Run the Program
+### Step 2: Install Dependencies (Optional)
 
-**No installation needed!** This project uses only Python's built-in libraries.
+For Gemini AI support:
+```bash
+pip install -r requirements.txt
+```
 
-Simply run:
+Or install individually:
+```bash
+pip install google-generativeai
+```
+
+### Step 3: Set Gemini API Key (Optional)
+
+To enable AI-powered answers:
+
+**Windows (PowerShell):**
+```powershell
+$env:GEMINI_API_KEY="your-api-key-here"
+```
+
+**Mac/Linux:**
+```bash
+export GEMINI_API_KEY="your-api-key-here"
+```
+
+See [API_SETUP.md](API_SETUP.md) for detailed instructions.
+
+### Step 4: Run the Program
+
 ```bash
 python main.py
 ```
 
-That's it! The program will start immediately.
+The system works with or without Gemini API!
 
-### Step 3: Use the System
+### Step 5: Use the System
 
 1. **Post a Question** (Option 1)
    - Enter your name
    - Choose a subject (Python, Mathematics, Physics, Chemistry, Data Structures)
    - Type your question
-   - System automatically fetches web-scraped answers
+   - System automatically generates answers using AI or web scraping
 
 2. **View Questions** (Option 2)
    - See all posted questions and their status
 
 3. **View Responses** (Option 3)
-   - See automatic web-scraped answer + instructor's verified answer
+   - See automatic AI/web-scraped answer + instructor's verified answer
 
 4. **Add Instructor Answer** (Option 6)
    - Verify student questions with authoritative answers
 
-### Test Web Scraping Feature
+### Test Gemini API
 
-To see proof that real web scraping works:
+To test if Gemini is configured:
+```bash
+python test_gemini.py
+```
+
+### Test Web Scraping
+
+To test Wikipedia scraping:
 ```bash
 python test_webscraping.py
 ```
-
-This fetches **actual content** from Wikipedia.
 
 ---
 
@@ -77,19 +130,26 @@ This fetches **actual content** from Wikipedia.
 
 ```
 python/
-├── main.py          # Main program entry point with menu system
-├── doubts.py        # Question/doubt management functions
-├── answers.py       # Answer generation and display functions
-├── data.py          # Data storage and web scraping simulation database
-└── README.md        # Documentation (this file)
+├── main.py               # Main program entry point with menu system
+├── doubts.py             # Question/doubt management functions
+├── answers.py            # Answer generation (Gemini + Wikipedia fallback)
+├── data.py               # Data storage and fallback content
+├── demo.py               # Demo script
+├── test_gemini.py        # Test Gemini API connection
+├── test_webscraping.py   # Test Wikipedia web scraping
+├── requirements.txt      # Python dependencies
+├── API_SETUP.md          # Gemini API configuration guide
+└── README.md             # Documentation (this file)
 ```
 
 ### File Descriptions:
 
-- **data.py**: Contains global data structures (lists/dictionaries) storing questions and simulated web content
-- **doubts.py**: Functions for posting, viewing, searching, and filtering questions
-- **answers.py**: Web scraping simulation logic and response display functions
-- **main.py**: User interface and program flow control
+- **main.py**: Program entry point with user interface and menu
+- **answers.py**: Answer generation (Gemini AI → Wikipedia → Cached content)
+- **doubts.py**: Question management and filtering
+- **data.py**: Data structures and fallback educational content
+- **test_gemini.py**: Tests Gemini API connectivity
+- **test_webscraping.py**: Tests Wikipedia web scraping
 
 ---
 

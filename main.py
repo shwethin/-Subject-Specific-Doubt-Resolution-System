@@ -2,7 +2,7 @@
 
 from doubts import (post_question, view_all_questions, find_question_by_id, 
                     get_questions_by_subject, get_pending_questions)
-from answers import add_instructor_response, display_all_responses
+from answers import add_instructor_response, display_all_responses, setup_gemini, USE_GEMINI, GEMINI_AVAILABLE
 
 
 def show_main_menu():
@@ -215,13 +215,31 @@ def main():
     Main function - Entry point of the program
     Runs the menu loop
     """
+    # Initialize Gemini API if available
+    gemini_status = setup_gemini()
+    
     print("\n" + "="*70)
     print("  WELCOME TO SUBJECT-SPECIFIC DOUBT RESOLUTION SYSTEM")
     print("  Blended Learning Platform for Online Doubt Resolution")
     print("="*70)
+    
+    # Show API status
+    if USE_GEMINI and GEMINI_AVAILABLE and gemini_status:
+        print("\n✅ Google Gemini AI: ACTIVE")
+        print("   Your system will use intelligent AI for answers!")
+    elif USE_GEMINI and not GEMINI_AVAILABLE:
+        print("\n⚠️  Gemini API key found but library not installed.")
+        print("   Run: pip install google-generativeai")
+        print("   Using Wikipedia web scraping instead.")
+    else:
+        print("\n📚 Google Gemini AI: Not configured")
+        print("   Using Wikipedia web scraping instead.")
+        print("   To enable Gemini: Set GEMINI_API_KEY environment variable")
+        print("   See API_SETUP.md for instructions")
+    
     print("\n📌 Features:")
     print("  → Post subject-specific questions")
-    print("  → Get automatic responses via web scraping simulation")
+    print("  → Get intelligent AI-powered or web-scraped responses")
     print("  → Receive verified answers from course instructors")
     print("="*70)
     
