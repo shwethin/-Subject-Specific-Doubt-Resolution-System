@@ -1,1 +1,6 @@
-google-generativeai>=0.3.0
+# This project uses only built-in Python libraries
+# No external dependencies required!
+# 
+# The system uses:
+# - urllib (built-in) for web scraping
+# - No external packages needed
