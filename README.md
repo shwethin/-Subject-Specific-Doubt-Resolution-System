@@ -14,7 +14,66 @@ In blended learning environments, students often have subject-related doubts out
 
 ---
 
-## 📁 Project Structure
+## � Installation & Setup (For External Users)
+
+### Prerequisites:
+- **Python 3.7+** installed on your system
+- **Git** (optional, for cloning)
+
+### Step 1: Get the Code
+
+**Option A: Clone from GitHub**
+```bash
+git clone https://github.com/shwethin/-Subject-Specific-Doubt-Resolution-System.git
+cd -Subject-Specific-Doubt-Resolution-System
+```
+
+**Option B: Download as ZIP**
+1. Go to https://github.com/shwethin/-Subject-Specific-Doubt-Resolution-System
+2. Click "Code" → "Download ZIP"
+3. Extract the ZIP file
+4. Open terminal in the extracted folder
+
+### Step 2: Run the Program
+
+**No installation needed!** This project uses only Python's built-in libraries.
+
+Simply run:
+```bash
+python main.py
+```
+
+That's it! The program will start immediately.
+
+### Step 3: Use the System
+
+1. **Post a Question** (Option 1)
+   - Enter your name
+   - Choose a subject (Python, Mathematics, Physics, Chemistry, Data Structures)
+   - Type your question
+   - System automatically fetches web-scraped answers
+
+2. **View Questions** (Option 2)
+   - See all posted questions and their status
+
+3. **View Responses** (Option 3)
+   - See automatic web-scraped answer + instructor's verified answer
+
+4. **Add Instructor Answer** (Option 6)
+   - Verify student questions with authoritative answers
+
+### Test Web Scraping Feature
+
+To see proof that real web scraping works:
+```bash
+python test_webscraping.py
+```
+
+This fetches **actual content** from Wikipedia.
+
+---
+
+## �📁 Project Structure
 
 ```
 python/
@@ -37,6 +96,40 @@ python/
 ## 🚀 How to Run
 
 ```bash
+python main.py
+```
+
+---
+
+## ❓ Troubleshooting
+
+### Issue: "python: command not found"
+**Solution**: Python is not installed or not in PATH
+- Install Python from https://www.python.org/downloads/
+- On Windows, check "Add Python to PATH" during installation
+- Use `python3` instead of `python` if needed
+
+### Issue: "ModuleNotFoundError"
+**Solution**: Some required module is missing
+- Since this project uses only built-in libraries, this shouldn't happen
+- Try reinstalling Python
+
+### Issue: Web scraping not working (shows cached content)
+**Solution**: Internet connection issue
+- Check your internet connection
+- The system automatically falls back to cached content
+- This is normal behavior
+
+### Issue: Menu shows but input not responding
+**Solution**: Terminal input issue
+- Try pressing Enter
+- Make sure terminal window is in focus
+- Restart the program
+
+### Issue: "Permission denied" on Linux/Mac
+**Solution**: Need execute permissions
+```bash
+chmod +x main.py
 python main.py
 ```
 
